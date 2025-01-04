@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +18,22 @@
                 console.log(body);
             }
         };
+
         body.sing();
+        console.log(body.age);
+        let add = (a, b) => a + b;
+        let arr = [1, 2, 3, 4, 5];
+        console.log("arr", arr);
+        
+        arr.forEach((element, a)=> {
+            console.log("value", element, "index", a);  
+        });
+
+        let str = "word";
+        console.log(str[0]);
+
+        let set1 = new Set([1, 2, 3, "5"]);
+        console.log(set1);
         
     </script>
 </body>
