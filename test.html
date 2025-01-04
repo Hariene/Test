@@ -35,6 +35,44 @@
         let set1 = new Set([1, 2, 3, "5"]);
         console.log(set1);
         
+        let x = "10";
+
+        // map 集合
+        let a = new Map([
+            ["123", "abc"],
+            ["Tom", 123]
+        ])
+
+        console.log(a);
+        
+        a.set("Qishi", "男");
+        a.set('"10', "123");
+    
+        console.log(a);
+        console.log(a.delete('"10"'));
+        console.log(a);
+        
+        a.set("Qishi", "女"); // 替换
+
+        console.log(a);
+        console.log(a.size);
+        
+        let arr2 = [...a];
+        console.log(arr2);
+        console.log(typeof a);
+        let b = Array.from(a);
+        console.log(b);
+        for (const value of a) {
+            console.log(value);
+            
+        }
+        
+        for (const [key, value] of a) {
+            console.log("key", key, "value",value);
+        }
+        
+        console.log('');
+
     </script>
 </body>
 </html>
