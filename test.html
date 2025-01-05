@@ -70,8 +70,79 @@
         for (const [key, value] of a) {
             console.log("key", key, "value",value);
         }
+        console.log("---------------------------");
+        a.forEach(a => {
+            console.log("value", a);
+        });
+        a.clear();
+        console.log(a.size);
+
+        // 对象
+        let p1 = {
+            name: "123",
+            sex: "男",
+            age: 20
+        }
+        console.log("对象", p1);
+        p1.height = 181;
+        console.log("对象", p1);
+        p1.age = 30;
+        console.log("对象", p1);
+        delete p1.sex;
+        console.log(p1);
+
+        let has = "name" in p1;
+        console.log(has);
+
+        // 获取属的数量
+        console.log(Object.keys(p1).length);
+
+        for (const key in p1) {
+                const value = p1[key];
+                console.log(key, value);
+        }
+
+        let c = Object.entries(p1) //返回二维数组
+        console.log(c);
+        c.forEach(([key ,value]) => {
+            console.log(key, value);
+        });
+
+        p1 = {};
+        console.log(p1);
+
+        class Person {
+            age;
+            name;
+            #web;
+            
+            constructor(age, name, web) {
+                this.age = age;
+                this.name = name;
+                this.#web = web;
+            }
+
+            get web() {
+                return this.#web;
+            }
+
+            set web(value) {
+                this.#web = value;
+            }
+
+            info() {
+                console.log(`${this.age}, ${this.name}, ${this.#web}`);
+            }
+
+        }
         
-        console.log('');
+        let p2 = new Person(20, "Jack", "www.baidu.com");
+        console.log(p2.web);
+        p2.web = "www.yb.com";
+        console.log(p2.web);
+        p2.info();
+        
+        let p3 = new Person();
 
     </script>
 </body>
