@@ -7,9 +7,9 @@
 </head>
 <body>
     <script>
-        let name = "John";
-        console.log(name);
-        console.log(typeof name);
+        let name1 = "John";
+        console.log(name1);
+        console.log(typeof name1);
 
         let body = {
             name: "Demo",
@@ -141,8 +141,52 @@
         p2.web = "www.yb.com";
         console.log(p2.web);
         p2.info();
-        
+
         let p3 = new Person();
+
+        let arr3 = [1, 2];
+        let [num1, num2] = arr3;
+        console.log(`${num1} ${num2}`);
+
+        let arr4 = [1, 2, 3, 4];
+        let [,,num3] = [1, 2, 3];
+        console.log(num3);
+        let [a1,...arr5] = arr4
+        console.log(arr5, a1);
+
+        // 两数交换
+        let b1 = 10, b2 = 20;
+        [b1, b2] = [b2, b1];
+        console.log(b1, b2);
+
+        // 对象解构
+        class Per {
+            age;
+            name;
+            #web;
+            constructor(age, name, web) {
+                this.age = age;
+                this.name = name;
+                this.#web = web;
+            }
+        }
+        let per1 = new Per(19, "Mike", "www.yd.com");
+        let {name} = per1;
+        // Rename
+        let {name:username, age, web} = per1;
+        console.log(name,"\n", name, age, web);
+
+        let promise = new Promise((resolve, reject) => {
+            // resolve("还钱了");
+            reject("没有还钱");
+        }).then(a => {
+            console.log(a);
+        }).catch(error => {
+            console.log(error);
+        }).finally(() => {
+            console.log("异步执行结束！");
+        });
+        
 
     </script>
 </body>
