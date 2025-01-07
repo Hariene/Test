@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>输入框</p>
+        <input v-show="e1.show" type="text" v-bind:value="web.url"> <hr>
+        <button @click="toggle">切换显示状态</button> <hr>
+
+        <input type="text" :value="web.url"> <br> <hr>
+
+        <b :class="{texcolor:web.fontStatus}">V-bind</b>
+
+
+    </div>
+
+    <script type="module">
+        import {createApp, reactive, ref} from "../js/vue.esm-browser.js"
+
+        let x = true
+
+        createApp({
+            setup() {
+                const web = {
+                    url: "www.baidu.com",
+                    fontStatus: true
+                }
+ 
+
+                const e1 = reactive({
+                    show: true,
+                })
+                const toggle = () => {
+                    e1.show = !e1.show
+                }
+
+                return {
+                    web,
+                    e1,
+                    toggle,
+                }
+            }
+        }).mount("#app")
+    </script>
+
+    <script>
+        console.log("Vue");
+    </script>
+</body>
+</html>

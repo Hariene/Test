@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test4</title>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+        <h2>{{web}}</h2>
+        <h2>{{web.title}}</h2>
+        <h2>{{web.url}}</h2>
+        <h2>{{name}}</h2>
+        <h2>{{web.user}}</h2>
+
+        <button v-on:click="edit">修改</button> <br>
+        <button @click="edit">修改-简写形式@</button> <hr>
+
+        回车 <input type="text" @keyup.enter="add(40, 60)">
+    </div>
+
+    <script type="module">
+        import {createApp, reactive, ref} from "../js/vue.esm-browser.js"
+        createApp({
+            setup() {
+                const name = ref(10)
+                name.value = 300
+                const web = reactive({
+                    url: "www.baidu.com",
+                    user: 0,
+                    num: 20
+                })
+                web.url = "www.www.com"
+
+                const add = (a, b) => {
+                    web.user += a + b
+                }
+
+                const edit = () => {
+                    web.url = "www.coding.com"
+                }
+
+                return {
+                    msg:"success",
+                    web,
+                    name,
+                    edit,
+                    add
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>

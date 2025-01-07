@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{ web.show }} <br> <hr>
+        <p v-show="web.show">coding.com</p>
+        <p v-if="web.show">coding.com</p>
+        <button @click="toggle">切换显示状态</button> <br>
+        <p v-if="web.num < 10">新网站</p>
+        <p v-else-if="web.num > 10">新网站2</p>
+        <p v-else="web.num = 10">新网站3</p>
+    </div>
+
+    </div>
+    <script type="module">
+        import {createApp, reactive} from "../js/vue.esm-browser.js"
+
+        createApp({
+            setup() {
+                const web = reactive({
+                    show: true,
+                    num: 10
+                })
+
+                const name = "Jack";
+
+                const toggle = () => {
+                    web.show = !web.show
+                }
+
+                return {
+                    web,
+                    toggle,
+                    name
+                }
+
+            }
+        }).mount("#app")
+        
+    </script>
+</body>
+</html>
