@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>x
+<body>
+    <div id="app">
+        <select v-model="data.type">
+            <option value="0">请选择</option>
+            <option value="1">ID</option>
+            <option value="2">标题</option>
+        </select>
+        <input type="text" v-model="data.content">
+        <button @click="search">搜索</button> 
+        
+        <ul>
+            <li v-for="(value, index) in data.list" :key="index">
+                {{value}}
+            </li>
+        </ul>
+    </div>
+
+    <script src="../js/axios.min.js"></script>
+    <script type="module">
+        import {createApp, reactive} from "../js/vue.esm-browser.js"
+        createApp({
+            setup() {
+                const data = reactive({
+                    type: "0", //搜索类型
+                    content: "", //搜索内容
+                    list: [],
+                })
+
+                const search = () => {
+                    data.list = []
+
+                    console.log("搜索类型", data.type, "搜索内容", data.content);
+                    if (data.type == "1") {
+                        let id = data.content
+                        axios.get(`http://localhost/article/get/id/${id}`).then(res => {
+                            console.log("get.data:", res.data)
+
+                            if (res.data.status == "success") {
+                                data.list.push(res.data.data)
+                            }
+                        }).catch((err) => {
+                            console.log("err:", err);                            
+                        });
+                    } else if (data.type == 2) {
+                        let parms = {
+                            title: data.content
+                        }
+
+                        axios.post("http://localhost/article/postJson/search", parms).then((res) => {
+                            console.log("get.data:", res.data)
+
+                            if (res.data.status == "success") {
+                                for (let index = 0; index < res.data.data.length; index++) {
+                                    const element = res.data.data[index]
+                                    data.list.push(element)
+                                }
+                            }
+                        }).catch((err) => {
+                            console.log("err:", err);                            
+                        });
+                    }
+                }
+
+                return {
+                    data,
+                    search
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
